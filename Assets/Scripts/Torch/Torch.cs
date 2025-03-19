@@ -3,19 +3,22 @@ using UnityEngine;
 public class Torch : MonoBehaviour
 {
     public Sprite fullTorchSprite;  
-    public Sprite mediumTorchSprite; 
-    public Sprite lowTorchSprite;   
 
     public float lifetime = 30f;
-    private Animator animator;
 
-    private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private float timeSinceSpawn;
+
+    private enum TorchState
+    {
+        Full,
+        Medium,
+        Low
+    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         timeSinceSpawn = 0f;
     }
 
@@ -35,29 +38,37 @@ public class Torch : MonoBehaviour
     {
         float remainingTime = lifetime - timeSinceSpawn;
 
-        // from 20 to 30
-        if (remainingTime > 20f) 
+        TorchState currentState = GetTorchState(remainingTime);
+
+        switch (currentState)
         {
-            spriteRenderer.sprite = fullTorchSprite;
-            animator.SetBool("IsFull", true);
-            animator.SetBool("IsMedium", false);
-            animator.SetBool("IsSmall", false);
+            case TorchState.Full:
+                animator.SetInteger("TorchState", (int)TorchState.Full);
+                break;
+
+            case TorchState.Medium:
+                animator.SetInteger("TorchState", (int)TorchState.Medium);
+                break;
+
+            case TorchState.Low:
+                animator.SetInteger("TorchState", (int)TorchState.Low);
+                break;
         }
-        // from 10 to 20
+    }
+
+    private TorchState GetTorchState(float remainingTime)
+    {
+        if (remainingTime > 20f)
+        {
+            return TorchState.Full;
+        }
         else if (remainingTime > 10f)
         {
-            spriteRenderer.sprite = mediumTorchSprite;
-            animator.SetBool("IsFull", false);
-            animator.SetBool("IsMedium", true);
-            animator.SetBool("IsSmall", false);
+            return TorchState.Medium;
         }
-        // from 0 to 10
-        else 
+        else
         {
-            spriteRenderer.sprite = lowTorchSprite;
-            animator.SetBool("IsFull", false);
-            animator.SetBool("IsMedium", false);
-            animator.SetBool("IsSmall", true);
+            return TorchState.Low;
         }
     }
 
