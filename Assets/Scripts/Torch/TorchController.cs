@@ -15,17 +15,33 @@ public class TorchController : MonoBehaviour
         {
             Instantiate(torchPrefab, position, Quaternion.identity);
         }
+        else
+        {
+            RefreshTorchLifetime(position);
+        }
     }
 
-    
     private bool IsTorchInRadius(Vector3 position)
     {
         Collider2D[] targets =  Physics2D.OverlapCircleAll(position, checkRadius, torchLayers);
-        
         return targets.Length > 0;
     }
-    
-    
+
+    private void RefreshTorchLifetime(Vector3 position)
+    {
+        Collider2D[] targets = Physics2D.OverlapCircleAll(position, checkRadius, torchLayers);
+        
+        foreach (Collider2D target in targets)
+        {
+            Torch torch = target.GetComponent<Torch>();
+            if (torch != null)
+            {
+                torch.ResetLifetime();
+                break; 
+            }
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         if (torchPoint == null)

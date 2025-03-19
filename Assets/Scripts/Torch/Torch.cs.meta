@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bf1d2f1d761a4c44cbac8454a575dd9e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fullTorchSprite: {fileID: 21300032, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
+  - mediumTorchSprite: {fileID: 21300028, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
+  - lowTorchSprite: {fileID: 21300026, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

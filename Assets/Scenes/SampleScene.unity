@@ -189,63 +189,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 747251258886483183, guid: 5dbff946d7ce7e748861210984d0c0a3, type: 3}
   m_PrefabInstance: {fileID: 18096965}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &20492743
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 752356139606323620, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_Name
-      value: Torch
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.5591614
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.3158785
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.07033084
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3926608383417987552, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
 --- !u!1001 &69350998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -509,7 +452,8 @@ GameObject:
   - component: {fileID: 224769241}
   - component: {fileID: 224769243}
   - component: {fileID: 224769244}
-  m_Layer: 6
+  - component: {fileID: 224769245}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -554,8 +498,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 742212037
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 901639f1dddd7b04aa3c943786d274d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -691,8 +635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  torchController: {fileID: 2997980410781291244, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
-  torchPoint: {fileID: 0}
 --- !u!114 &224769244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,13 +647,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cc78854b5875f4e995177228bf0325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakableIce: {fileID: 9134884390252086934, guid: 5dbff946d7ce7e748861210984d0c0a3, type: 3}
   iceBlockLayers:
     serializedVersion: 2
     m_Bits: 8
   attackPoint: {fileID: 273873917}
   attackRange: 1.33
   attackDamage: 40
+--- !u!114 &224769245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224769234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02460a81c99eb6047820ac456f6b1060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torchLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  torchPoint: {fileID: 963606240}
+  torchPrefab: {fileID: 752356139606323620, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
+  checkRadius: 4
 --- !u!1001 &228311008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -845,7 +804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 273873917}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: AttackPoint
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1656,8 +1615,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1201650829
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.78, y: 0.78, z: 0}
@@ -5135,8 +5094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 963606240}
-  - component: {fileID: 963606241}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: TorchPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5158,27 +5116,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 224769240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &963606241
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963606239}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &994500323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8019,4 +7956,3 @@ SceneRoots:
   - {fileID: 224769240}
   - {fileID: 1796331830}
   - {fileID: 1038540722}
-  - {fileID: 20492743}

@@ -3,7 +3,9 @@ guid: 02460a81c99eb6047820ac456f6b1060
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - torchPoint: {instanceID: 0}
+  - torchPrefab: {fileID: 752356139606323620, guid: 25ff9f9f765f7c04ab415711a022c95b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

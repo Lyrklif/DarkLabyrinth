@@ -172,6 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  fullIceSprite: {fileID: 21300000, guid: c35915ed4ab18d94786f42d435aa5621, type: 3}
-  crackedIceSprite: {fileID: 21300000, guid: 0aad71b4ede9398468a3cb4daabd8543, type: 3}
-  brokenIceSprite: {fileID: 21300000, guid: 26d9841ed57d12645b9c794496bac428, type: 3}
+  fullIceSprite: {fileID: 21300000, guid: 26d9841ed57d12645b9c794496bac428, type: 3}
+  crackedIceSprite: {fileID: 21300000, guid: 16a5b6c526eca454b86ff864262dc5a2, type: 3}
+  brokenIceSprite: {fileID: 21300000, guid: 4d93859f540d44f4c9f7da6fb53601fc, type: 3}
