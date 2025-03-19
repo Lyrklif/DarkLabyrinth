@@ -6,7 +6,7 @@ public class PlayerAttackController : MonoBehaviour
     public LayerMask iceBlockLayers;
     public Transform attackPoint;
     
-    public float attackRange = 1f;
+    public float attackRange = 1.3f;
     public int attackDamage = 40;
 
     public void Attack()
