@@ -7,6 +7,7 @@ public class PlayerAnimationController : MonoBehaviour
     public float moveSpeed = 5f;
     private Vector3 moveDirection;
     private PlayerAttackController attackController;
+    private bool isJumping = false;
 
     void Start()
     {
@@ -40,17 +41,14 @@ public class PlayerAnimationController : MonoBehaviour
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         // jump
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
+            isJumping = true;
             animator.SetBool("IsJumping", true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            animator.SetBool("IsJumping", false);
-        }
+        } 
 
         // attck
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !isJumping)
         {
             animator.SetBool("IsAttacking", true);
             if (attackController != null)
@@ -62,5 +60,11 @@ public class PlayerAnimationController : MonoBehaviour
         {
             animator.SetBool("IsAttacking", false);
         }
+    }
+
+    public void OnJumpAnimationEnd()
+    {
+        isJumping = false; 
+        animator.SetBool("IsJumping", false);
     }
 }
