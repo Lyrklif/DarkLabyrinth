@@ -49,7 +49,6 @@ public class BreakableIce : MonoBehaviour
 
     void BreakIce()
     {
-        Debug.Log("Ice has broken");
         // die animation?
         
         // destroy the ice block

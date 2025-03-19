@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    public BreakableIce breakableIce;
     public LayerMask iceBlockLayers;
     public Transform attackPoint;
     
-    public float attackRange = 1.3f;
+    public float attackRange = 1.4f;
     public int attackDamage = 40;
 
     public void Attack()
@@ -18,7 +17,6 @@ public class PlayerAttackController : MonoBehaviour
         // damage them
         foreach (Collider2D target in hitTargets)
         {
-            Debug.Log("We hit: " + target.name);
             target.GetComponent<BreakableIce>().TakeDamage(attackDamage);
         }
     }

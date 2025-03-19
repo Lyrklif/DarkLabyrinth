@@ -7,12 +7,14 @@ public class PlayerAnimationController : MonoBehaviour
     public float moveSpeed = 5f;
     private Vector3 moveDirection;
     private PlayerAttackController attackController;
+    private TorchController torchController;
     private bool isJumping = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         attackController = GetComponent<PlayerAttackController>();
+        torchController = GetComponent<TorchController>();
     }
 
     void Update()
@@ -43,11 +45,16 @@ public class PlayerAnimationController : MonoBehaviour
         // jump
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
+            if (torchController != null)
+            {
+                torchController.AddTorchOnJump();
+            }
+            
             isJumping = true;
             animator.SetBool("IsJumping", true);
-        } 
+        }
 
-        // attck
+        // attack
         if (Input.GetKeyDown(KeyCode.F) && !isJumping)
         {
             animator.SetBool("IsAttacking", true);
