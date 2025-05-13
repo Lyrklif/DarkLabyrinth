@@ -4,11 +4,11 @@ namespace Player
 {
     public class PlayerAttackController : MonoBehaviour
     {
-        public LayerMask iceBlockLayers;
-        public Transform attackPoint;
+        [SerializeField] LayerMask iceBlockLayers;
+        [SerializeField] Transform attackPoint;
 
-        public float attackRange = 1.4f;
-        public int attackDamage = 40;
+        [SerializeField] float attackRange = 1.4f;
+        [SerializeField] int attackDamage = 40;
 
         public void Attack()
         {
@@ -23,7 +23,7 @@ namespace Player
             }
         }
 
-        void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelected()
         {
             if (attackPoint == null)
                 return;

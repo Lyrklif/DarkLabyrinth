@@ -4,9 +4,8 @@ namespace Torch
 {
     public class Torch : MonoBehaviour
     {
-        public Sprite fullTorchSprite;
-
-        public float lifetime = 30f;
+        [SerializeField] Sprite fullTorchSprite;
+        [SerializeField] float lifetime = 30f;
 
         private Animator animator;
         private float timeSinceSpawn;

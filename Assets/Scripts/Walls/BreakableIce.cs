@@ -33,7 +33,7 @@ namespace Walls
             }
         }
 
-        void UpdateSprite()
+        private void UpdateSprite()
         {
             if (currentHealth > maxHealth * 0.66f) // more them 66% health
             {
@@ -49,7 +49,7 @@ namespace Walls
             }
         }
 
-        void BreakIce()
+        private void BreakIce()
         {
             // die animation?
 

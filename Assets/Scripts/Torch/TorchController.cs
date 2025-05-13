@@ -4,10 +4,10 @@ namespace Torch
 {
     public class TorchController : MonoBehaviour
     {
-        public LayerMask torchLayers;
-        public Transform torchPoint;
-        public GameObject torchPrefab;
-        public float checkRadius = 4f;
+        [SerializeField]  LayerMask torchLayers;
+        [SerializeField]  Transform torchPoint;
+        [SerializeField]  GameObject torchPrefab;
+        [SerializeField]  float checkRadius = 4f;
 
         public void AddTorchOnJump()
         {
@@ -44,7 +44,7 @@ namespace Torch
             }
         }
 
-        void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelected()
         {
             if (torchPoint == null)
                 return;

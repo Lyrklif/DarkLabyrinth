@@ -6,7 +6,7 @@ namespace Player
     public class PlayerAnimationController : MonoBehaviour
     {
         private Animator animator;
-        public float moveSpeed = 5f;
+        [SerializeField] float moveSpeed = 5f;
         private Vector3 moveDirection;
         private Player.PlayerAttackController attackController;
         private Torch.TorchController torchController;
