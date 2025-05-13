@@ -1,52 +1,55 @@
 using UnityEngine;
 
-public class TorchController : MonoBehaviour
+namespace Torch
 {
-    public LayerMask torchLayers;
-    public Transform torchPoint;
-    public GameObject torchPrefab; 
-    public float checkRadius = 4f;
-
-    public void AddTorchOnJump()
+    public class TorchController : MonoBehaviour
     {
-        Vector3 position = torchPoint.position;
-            
-        if (!IsTorchInRadius(position))
-        {
-            Instantiate(torchPrefab, position, Quaternion.identity);
-        }
-        else
-        {
-            RefreshTorchLifetime(position);
-        }
-    }
+        public LayerMask torchLayers;
+        public Transform torchPoint;
+        public GameObject torchPrefab;
+        public float checkRadius = 4f;
 
-    private bool IsTorchInRadius(Vector3 position)
-    {
-        Collider2D[] targets =  Physics2D.OverlapCircleAll(position, checkRadius, torchLayers);
-        return targets.Length > 0;
-    }
-
-    private void RefreshTorchLifetime(Vector3 position)
-    {
-        Collider2D[] targets = Physics2D.OverlapCircleAll(position, checkRadius, torchLayers);
-        
-        foreach (Collider2D target in targets)
+        public void AddTorchOnJump()
         {
-            Torch torch = target.GetComponent<Torch>();
-            if (torch != null)
+            Vector3 position = torchPoint.position;
+
+            if (!IsTorchInRadius(position))
             {
-                torch.ResetLifetime();
-                break; 
+                Instantiate(torchPrefab, position, Quaternion.identity);
+            }
+            else
+            {
+                RefreshTorchLifetime(position);
             }
         }
-    }
 
-    void OnDrawGizmosSelected()
-    {
-        if (torchPoint == null)
-            return;
-        
-        Gizmos.DrawWireSphere(torchPoint.position, checkRadius);
+        private bool IsTorchInRadius(Vector3 position)
+        {
+            Collider2D[] targets = Physics2D.OverlapCircleAll(position, checkRadius, torchLayers);
+            return targets.Length > 0;
+        }
+
+        private void RefreshTorchLifetime(Vector3 position)
+        {
+            Collider2D[] targets = Physics2D.OverlapCircleAll(position, checkRadius, torchLayers);
+
+            foreach (Collider2D target in targets)
+            {
+                Torch torch = target.GetComponent<Torch>();
+                if (torch != null)
+                {
+                    torch.ResetLifetime();
+                    break;
+                }
+            }
+        }
+
+        void OnDrawGizmosSelected()
+        {
+            if (torchPoint == null)
+                return;
+
+            Gizmos.DrawWireSphere(torchPoint.position, checkRadius);
+        }
     }
 }

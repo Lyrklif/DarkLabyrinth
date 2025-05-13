@@ -208,8 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullTorchSprite: {fileID: 21300032, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
-  mediumTorchSprite: {fileID: 21300028, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
-  lowTorchSprite: {fileID: 21300026, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
   lifetime: 30
 --- !u!95 &5019566339039304128
 Animator:

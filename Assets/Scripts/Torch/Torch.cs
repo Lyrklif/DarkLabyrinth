@@ -1,79 +1,82 @@
 using UnityEngine;
 
-public class Torch : MonoBehaviour
+namespace Torch
 {
-    public Sprite fullTorchSprite;  
-
-    public float lifetime = 30f;
-
-    private Animator animator;
-    private float timeSinceSpawn;
-
-    private enum TorchState
+    public class Torch : MonoBehaviour
     {
-        Full,
-        Medium,
-        Low
-    }
+        public Sprite fullTorchSprite;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        timeSinceSpawn = 0f;
-    }
+        public float lifetime = 30f;
 
-    void Update()
-    {
-        timeSinceSpawn += Time.deltaTime;
+        private Animator animator;
+        private float timeSinceSpawn;
 
-        UpdateSprite();
-
-        if (timeSinceSpawn >= lifetime)
+        private enum TorchState
         {
-            Destroy(gameObject);
+            Full,
+            Medium,
+            Low
         }
-    }
 
-    private void UpdateSprite()
-    {
-        float remainingTime = lifetime - timeSinceSpawn;
-
-        TorchState currentState = GetTorchState(remainingTime);
-
-        switch (currentState)
+        void Start()
         {
-            case TorchState.Full:
-                animator.SetInteger("TorchState", (int)TorchState.Full);
-                break;
-
-            case TorchState.Medium:
-                animator.SetInteger("TorchState", (int)TorchState.Medium);
-                break;
-
-            case TorchState.Low:
-                animator.SetInteger("TorchState", (int)TorchState.Low);
-                break;
+            animator = GetComponent<Animator>();
+            timeSinceSpawn = 0f;
         }
-    }
 
-    private TorchState GetTorchState(float remainingTime)
-    {
-        if (remainingTime > 20f)
+        void Update()
         {
-            return TorchState.Full;
-        }
-        else if (remainingTime > 10f)
-        {
-            return TorchState.Medium;
-        }
-        else
-        {
-            return TorchState.Low;
-        }
-    }
+            timeSinceSpawn += Time.deltaTime;
 
-    public void ResetLifetime()
-    {
-        timeSinceSpawn = 0f;
+            UpdateSprite();
+
+            if (timeSinceSpawn >= lifetime)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        private void UpdateSprite()
+        {
+            float remainingTime = lifetime - timeSinceSpawn;
+
+            TorchState currentState = GetTorchState(remainingTime);
+
+            switch (currentState)
+            {
+                case TorchState.Full:
+                    animator.SetInteger("TorchState", (int)TorchState.Full);
+                    break;
+
+                case TorchState.Medium:
+                    animator.SetInteger("TorchState", (int)TorchState.Medium);
+                    break;
+
+                case TorchState.Low:
+                    animator.SetInteger("TorchState", (int)TorchState.Low);
+                    break;
+            }
+        }
+
+        private TorchState GetTorchState(float remainingTime)
+        {
+            if (remainingTime > 20f)
+            {
+                return TorchState.Full;
+            }
+            else if (remainingTime > 10f)
+            {
+                return TorchState.Medium;
+            }
+            else
+            {
+                return TorchState.Low;
+            }
+        }
+
+        public void ResetLifetime()
+        {
+            timeSinceSpawn = 0f;
+        }
     }
 }
