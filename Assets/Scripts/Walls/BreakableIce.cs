@@ -1,60 +1,37 @@
-using System;
 using UnityEngine;
 
 namespace Walls
 {
     public class BreakableIce : MonoBehaviour
     {
-        [SerializeField] int maxHealth = 100;
-        private int currentHealth = 100;
-
-        [SerializeField] Sprite fullIceSprite;
-        [SerializeField] Sprite crackedIceSprite;
-        [SerializeField] Sprite brokenIceSprite;
-
-        private SpriteRenderer spriteRenderer;
+        [SerializeField] private int maxHealth = 100;
+        private int currentHealth;
+        
+        private BreakableCell breakableCell;
+        private ReplaceSprites replaceSprites;
 
         private void Start()
         {
             currentHealth = maxHealth;
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            UpdateSprite();
+            
+            // Получаем или добавляем компоненты
+            breakableCell = gameObject.GetComponent<BreakableCell>() ?? gameObject.AddComponent<BreakableCell>();
+            replaceSprites = gameObject.GetComponent<ReplaceSprites>() ?? gameObject.AddComponent<ReplaceSprites>();
+            
+            // Инициализируем компоненты
+            breakableCell.Initialize(maxHealth);
+            replaceSprites.Initialize(maxHealth, () => currentHealth);
         }
 
         public void TakeDamage(int damage)
         {
             currentHealth -= damage;
-            UpdateSprite();
-
-            // play hurt animation
+            replaceSprites.UpdateSprite();
+            
             if (currentHealth <= 0)
             {
-                BreakIce();
+                breakableCell.BreakCell();
             }
-        }
-
-        private void UpdateSprite()
-        {
-            if (currentHealth > maxHealth * 0.66f) // more them 66% health
-            {
-                spriteRenderer.sprite = fullIceSprite;
-            }
-            else if (currentHealth > maxHealth * 0.33f) // from 33% to 66% health
-            {
-                spriteRenderer.sprite = crackedIceSprite;
-            }
-            else // less then 33% health
-            {
-                spriteRenderer.sprite = brokenIceSprite;
-            }
-        }
-
-        private void BreakIce()
-        {
-            // die animation?
-
-            // destroy the ice block
-            Destroy(gameObject);
         }
     }
 }
